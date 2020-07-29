@@ -1,0 +1,2 @@
+# arquivossequencial
+Arquivos sequencial COBOL 

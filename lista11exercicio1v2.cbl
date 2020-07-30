@@ -1,34 +1,34 @@
       $set sourceformat"free"
 
-      *>Divisão de identificação do programa
+      *>DivisÃ£o de identificaÃ§Ã£o do programa
        identification division.
        program-id. "lista11exercicio1v2".
-       author. "Michele".
+       author. "Michele de Lima".
        installation. "PC".
        date-written. 16/07/2020.
        date-compiled. 16/07/2020.
 
 
 
-      *>Divisão para configuração do ambiente
+      *>DivisÃ£o para configuraÃ§Ã£o do ambiente
        environment division.
        configuration section.
            special-names. decimal-point is comma.
 
-      *>-----Declaração dos recursos externos
+      *>-----DeclaraÃ§Ã£o dos recursos externos
        input-output section.
        file-control.
-      *>   Declaração do arquivo
-           select arqTemperaturas assign to "arqTemperaturas.dat"       *>assosiando arquivo lógico (nome dado ao arquivo dentro do pmg vom o arquivo fisico)
-           organization is line sequential                              *>forma de organização dos dados
+      *>   DeclaraÃ§Ã£o do arquivo
+           select arqTemperaturas assign to "arqTemperaturas.dat"       *>assosiando arquivo lÃ³gico (nome dado ao arquivo dentro do pmg vom o arquivo fisico)
+           organization is line sequential                              *>forma de organizaÃ§Ã£o dos dados
            access mode is sequential                                    *>forma de acesso aos dados
-           lock mode is automatic                                       *>tratamento de dead lock - evita perda de dados em ambiemtes multi-usuários
-           file status is ws-fs-arqTemperaturas.                        *>file status (o status da ultima operação)
+           lock mode is automatic                                       *>tratamento de dead lock - evita perda de dados em ambiemtes multi-usuÃ¡rios
+           file status is ws-fs-arqTemperaturas.                        *>file status (o status da ultima operaÃ§Ã£o)
 
 
        i-o-control.
 
-      *>Declaração de variáveis
+      *>DeclaraÃ§Ã£o de variÃ¡veis
        data division.
 
       *>----Variaveis de arquivos
@@ -67,14 +67,14 @@
        77 ws-temp-total                            pic 9(04).
        77 ws-dia-informado                         pic 9(02).
 
-      *>----Variaveis para comunicação entre programas
+      *>----Variaveis para comunicaÃ§Ã£o entre programas
        linkage section.
 
 
-      *>----Declaração de tela
+      *>----DeclaraÃ§Ã£o de tela
        screen section.
 
-      *>Declaração do corpo do programa
+      *>DeclaraÃ§Ã£o do corpo do programa
        procedure division.
 
 
@@ -83,11 +83,11 @@
            perform finaliza.
 
       *>------------------------------------------------------------------------
-      *>  Procedimentos de inicialização
+      *>  Procedimentos de inicializaÃ§Ã£o
       *>------------------------------------------------------------------------
        inicializa section.
 
-      *>    inicialização da tabela de estados
+      *>    inicializaÃ§Ã£o da tabela de estados
 
            open input arqTemperaturas.
            if ws-fs-arqTemperaturas <> 0 then
@@ -100,7 +100,7 @@
            perform varying ws-ind-temp from 1 by 1 until
                                                ws-fs-arqTemperaturas = 10
                                                or ws-ind-temp > 30
-               *> lê o arquivo
+               *> lÃª o arquivo
                read arqTemperaturas into ws-temperaturas(ws-ind-temp)
                if  ws-fs-arqTemperaturas <> 0
                and ws-fs-arqTemperaturas <> 10 then
@@ -132,7 +132,7 @@
       *>------------------------------------------------------------------------
        processamento section.
 
-      *>   chamando rotina de calculo da média de temp.
+      *>   chamando rotina de calculo da mÃ©dia de temp.
            perform calc-media-temp
 
 
@@ -148,16 +148,16 @@
 
       *>       percorre a tabela para achar o dia digitado
                perform varying ws-ind-temp from 1 by 1 until ws-ind-temp > 30
-      *>           se a linha da tabela conter o dia informado então
+      *>           se a linha da tabela conter o dia informado entÃ£o
                    if ws-dia(ws-ind-temp) = ws-dia-informado then
-      *>              guarda a posição da linha está no ws-ind-dia
+      *>              guarda a posiÃ§Ã£o da linha estÃ¡ no ws-ind-dia
                       move ws-ind-temp to ws-ind-dia
 
                end-perform
 
                if  ws-dia(ws-ind-dia) >= 1
                and ws-dia(ws-ind-dia) <= 30 then
-      *>           se a temperatura da posição x na tabela for maior que a media então
+      *>           se a temperatura da posiÃ§Ã£o x na tabela for maior que a media entÃ£o
                    if ws-temp(ws-ind-dia) > ws-media-temp then
 
                        display "A temperatura do dia " ws-dia(ws-ind-dia) " esta acima da media"
@@ -183,7 +183,7 @@
            exit.
 
       *>------------------------------------------------------------------------
-      *>  Calculo da média de temperatura
+      *>  Calculo da mÃ©dia de temperatura
       *>------------------------------------------------------------------------
        calc-media-temp section.
 
@@ -207,7 +207,7 @@
            exit.
 
       *>------------------------------------------------------------------------
-      *>  Finalização
+      *>  FinalizaÃ§Ã£o
       *>------------------------------------------------------------------------
        finaliza section.
            Stop run
